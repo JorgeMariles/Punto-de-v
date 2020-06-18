@@ -37,7 +37,7 @@ namespace Punto.d.v
         {
             
             var csvTable = new DataTable();
-            using (var csvReader = new CsvReader(new StreamReader(System.IO.File.OpenRead(@"C:\Users\monit\Documents\Inventario\Inventario.csv")), true))
+            using (var csvReader = new CsvReader(new StreamReader(System.IO.File.OpenRead(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv")), true))
             {
                 csvTable.Load(csvReader);
             }
