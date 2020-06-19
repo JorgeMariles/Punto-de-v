@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\monit\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\monit\\.nuget\\packages"
-    ]
-  }
-}
