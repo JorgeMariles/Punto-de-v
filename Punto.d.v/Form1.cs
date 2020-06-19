@@ -23,7 +23,7 @@ namespace Punto.d.v
             this.ActiveControl = textBox1;
             textBox1.Focus();
             cantidades.Text = "1";
-            
+            label3.Text = "0";
 
         }
         //no se hacerlo de otra manera 
@@ -96,18 +96,13 @@ namespace Punto.d.v
                     break;
                 }
             }
-
             item.SubItems.Add(cantidades.Text);
-
             listView1.Items.Add(item);
-
-            
             textBox1.Clear();
             this.ActiveControl = textBox1;
             textBox1.Focus();
             cantidades.Text = "1";
-
-           
+            //label3.Text = 
 
         }
 
@@ -116,20 +111,19 @@ namespace Punto.d.v
 
         }
 
-        
-
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void timer1_Tick_1(object sender, EventArgs e)
+        private void label3_Click(object sender, EventArgs e)
         {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            foreach (object item in listView1.Items)
-            {
-                MessageBox.Show(listView1.Text);
-            }
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
     
