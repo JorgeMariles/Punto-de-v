@@ -69,11 +69,6 @@ namespace Punto.d.v
             textBox1.AutoCompleteCustomSource = data;
         }
 
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("test");
@@ -98,6 +93,8 @@ namespace Punto.d.v
             }
             item.SubItems.Add(cantidades.Text);
             listView1.Items.Add(item);
+
+            //////////-----------------------
             textBox1.Clear();
             this.ActiveControl = textBox1;
             textBox1.Focus();
@@ -105,7 +102,6 @@ namespace Punto.d.v
             double total = 0;
             for (int x = 0; x < listView1.Items.Count;x++) 
             {
-
                 double precio = Convert.ToDouble(listView1.Items[x].SubItems[1].Text);
                 double unidades= Convert.ToDouble(listView1.Items[x].SubItems[2].Text);
                 total = (precio * unidades) +total;
@@ -119,10 +115,7 @@ namespace Punto.d.v
 
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
        
 

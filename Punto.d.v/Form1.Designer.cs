@@ -61,7 +61,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(178, 27);
             this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            
             // 
             // listView1
             // 
@@ -110,7 +110,7 @@
             this.cantidades.Name = "cantidades";
             this.cantidades.Size = new System.Drawing.Size(81, 27);
             this.cantidades.TabIndex = 4;
-            this.cantidades.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            
             // 
             // label1
             // 
