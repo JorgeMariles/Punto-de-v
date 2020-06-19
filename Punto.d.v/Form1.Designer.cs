@@ -40,12 +40,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.Pago = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cambiol = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Lime;
-            this.button1.Location = new System.Drawing.Point(545, 149);
+            this.button1.Location = new System.Drawing.Point(526, 248);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 53);
             this.button1.TabIndex = 0;
@@ -149,9 +153,50 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Total:";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(219, 165);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 20);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Pago";
+            // 
+            // Pago
+            // 
+            this.Pago.Location = new System.Drawing.Point(272, 162);
+            this.Pago.Name = "Pago";
+            this.Pago.Size = new System.Drawing.Size(125, 27);
+            this.Pago.TabIndex = 10;
+            this.Pago.TextChanged += new System.EventHandler(this.Pago_TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(501, 162);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(98, 31);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Cambio:";
+            // 
+            // cambiol
+            // 
+            this.cambiol.AutoSize = true;
+            this.cambiol.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cambiol.ForeColor = System.Drawing.Color.Black;
+            this.cambiol.Location = new System.Drawing.Point(600, 162);
+            this.cambiol.Name = "cambiol";
+            this.cambiol.Size = new System.Drawing.Size(0, 31);
+            this.cambiol.TabIndex = 7;
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(1222, 820);
+            this.Controls.Add(this.cambiol);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.Pago);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -182,6 +227,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox Pago;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label cambiol;
     }
 }
 
