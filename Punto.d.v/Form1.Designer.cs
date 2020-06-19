@@ -44,12 +44,15 @@
             this.Pago = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cambiol = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cambiarC = new System.Windows.Forms.TextBox();
+            this.Limpiar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Lime;
-            this.button1.Location = new System.Drawing.Point(526, 248);
+            this.button1.Location = new System.Drawing.Point(501, 211);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 53);
             this.button1.TabIndex = 0;
@@ -76,7 +79,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(693, 12);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(473, 528);
+            this.listView1.Size = new System.Drawing.Size(473, 481);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -164,7 +167,7 @@
             // 
             // Pago
             // 
-            this.Pago.Location = new System.Drawing.Point(272, 162);
+            this.Pago.Location = new System.Drawing.Point(267, 162);
             this.Pago.Name = "Pago";
             this.Pago.Size = new System.Drawing.Size(125, 27);
             this.Pago.TabIndex = 10;
@@ -185,14 +188,47 @@
             this.cambiol.AutoSize = true;
             this.cambiol.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cambiol.ForeColor = System.Drawing.Color.Black;
-            this.cambiol.Location = new System.Drawing.Point(600, 162);
+            this.cambiol.Location = new System.Drawing.Point(605, 162);
             this.cambiol.Name = "cambiol";
-            this.cambiol.Size = new System.Drawing.Size(0, 31);
+            this.cambiol.Size = new System.Drawing.Size(38, 31);
             this.cambiol.TabIndex = 7;
+            this.cambiol.Text = "0$";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(684, 507);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(196, 31);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Cambiar cantidad";
+            // 
+            // cambiarC
+            // 
+            this.cambiarC.Location = new System.Drawing.Point(875, 511);
+            this.cambiarC.Name = "cambiarC";
+            this.cambiarC.Size = new System.Drawing.Size(125, 27);
+            this.cambiarC.TabIndex = 11;
+            this.cambiarC.TextChanged += new System.EventHandler(this.cambiarC_TextChanged);
+            // 
+            // Limpiar
+            // 
+            this.Limpiar.BackColor = System.Drawing.Color.Red;
+            this.Limpiar.Location = new System.Drawing.Point(1056, 505);
+            this.Limpiar.Name = "Limpiar";
+            this.Limpiar.Size = new System.Drawing.Size(110, 42);
+            this.Limpiar.TabIndex = 12;
+            this.Limpiar.Text = "Limpiar Lista";
+            this.Limpiar.UseVisualStyleBackColor = false;
+            this.Limpiar.Click += new System.EventHandler(this.Limpiar_Click);
             // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(1222, 820);
+            this.Controls.Add(this.Limpiar);
+            this.Controls.Add(this.cambiarC);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.cambiol);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.Pago);
@@ -231,6 +267,9 @@
         private System.Windows.Forms.TextBox Pago;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label cambiol;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox cambiarC;
+        private System.Windows.Forms.Button Limpiar;
     }
 }
 

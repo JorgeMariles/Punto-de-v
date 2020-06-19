@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using LumenWorks.Framework.IO.Csv;
 using System.IO;
 using System.Diagnostics;
+using System.Drawing.Text;
 
 namespace Punto.d.v
 {
@@ -93,7 +94,6 @@ namespace Punto.d.v
                     listView1.Items[z].SubItems[2].Text = pre1.ToString();
                     pivot = true;
                 }
-
             }
 
             if (pivot == false)
@@ -116,32 +116,7 @@ namespace Punto.d.v
             this.ActiveControl = textBox1;
             textBox1.Focus();
             cantidades.Text = "1";
-            double total = 0;
-            for (int x = 0; x < listView1.Items.Count; x++)
-            {
-                double precio = Convert.ToDouble(listView1.Items[x].SubItems[1].Text);
-                double unidades = Convert.ToDouble(listView1.Items[x].SubItems[2].Text);
-                total = (precio * unidades) + total;
-            }
-            total = Math.Round(total, 2);
-            label3.Text = total.ToString() + "$";
-
-            if (remove_unwanted(Pago.Text) != "0"& remove_unwanted(Pago.Text) != "")
-            {
-                double cambio = 0;
-                cambio = Convert.ToDouble(Pago.Text) - total;
-                if (cambio < 0)
-                {
-                    cambiol.Text = "0" + "$";
-                }
-                else
-                {
-                    cambio = Math.Round(cambio, 2);
-                    cambiol.Text = cambio.ToString() + "$";
-                }
-
-            }
-
+            totalncambio();
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -151,10 +126,7 @@ namespace Punto.d.v
 
         private void Pago_TextChanged(object sender, EventArgs e)
         {
-            //if 
-
             double total = Convert.ToDouble(remove_unwanted(label3.Text));
-
             if (remove_unwanted(Pago.Text) != "0"& remove_unwanted(Pago.Text) != "")
             {
                 double cambio = 0;
@@ -168,11 +140,11 @@ namespace Punto.d.v
                     cambio = Math.Round(cambio, 2);
                     cambiol.Text = cambio.ToString() + "$";
                 }
-
+                
             }
-
-
         }
+
+        // remove characters from number only text boxes in order to stop crashes in operations
         public string remove_unwanted (string s){
             string result = string.Empty;
             foreach (var c in s)
@@ -183,6 +155,63 @@ namespace Punto.d.v
             }
             return result;
             }
+
+        //changes value from item selected 
+        private void cambiarC_TextChanged(object sender, EventArgs e)
+        {
+            if (remove_unwanted(cambiarC.Text) != "" & listView1.SelectedItems.Count>0)
+            {
+                double num = Convert.ToDouble(remove_unwanted(cambiarC.Text));
+                listView1.SelectedItems[0].SubItems[2].Text = num.ToString();
+            }
+            if (remove_unwanted(cambiarC.Text) == "" & listView1.SelectedItems.Count > 0)
+            {
+                listView1.SelectedItems[0].SubItems[2].Text = "0";
+            }
+            totalncambio();
+        }
+        //total and chenge service routine 
+        private void totalncambio()
+        {
+            double total = 0;
+            for (int x = 0; x < listView1.Items.Count; x++)
+            {
+                double precio = Convert.ToDouble(listView1.Items[x].SubItems[1].Text);
+                double unidades = Convert.ToDouble(listView1.Items[x].SubItems[2].Text);
+                total = (precio * unidades) + total;
+            }
+            total = Math.Round(total, 2);
+            label3.Text = total.ToString() + "$";
+
+            if (remove_unwanted(Pago.Text) != "0" & remove_unwanted(Pago.Text) != "")
+            {
+                double cambio = 0;
+                cambio = Convert.ToDouble(Pago.Text) - total;
+                if (cambio <= 0)
+                {
+                    cambiol.Text = "0" + "$";
+                }
+                else
+                {
+                    cambio = Math.Round(cambio, 2);
+                    cambiol.Text = cambio.ToString() + "$";
+                }
+            }
+        }
+        
+
+        private void Limpiar_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+            this.ActiveControl = textBox1;
+            textBox1.Focus();
+            cantidades.Text = "1";
+            label3.Text = "0" + "$";
+            Pago.Text = "0";
+            cambiol.Text = "0" + "$";
+        }
+
+
 
 
     }
