@@ -23,7 +23,7 @@ namespace Punto.d.v
             this.ActiveControl = textBox1;
             textBox1.Focus();
             cantidades.Text = "1";
-            label3.Text = "0";
+            label3.Text = "0"+"$";
 
         }
         //no se hacerlo de otra manera 
@@ -102,7 +102,15 @@ namespace Punto.d.v
             this.ActiveControl = textBox1;
             textBox1.Focus();
             cantidades.Text = "1";
-            //label3.Text = 
+            double total = 0;
+            for (int x = 0; x < listView1.Items.Count;x++) 
+            {
+
+                double precio = Convert.ToDouble(listView1.Items[x].SubItems[1].Text);
+                double unidades= Convert.ToDouble(listView1.Items[x].SubItems[2].Text);
+                total = (precio * unidades) +total;
+            }
+            label3.Text = total.ToString()+"$";
 
         }
 
@@ -116,15 +124,9 @@ namespace Punto.d.v
 
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
+       
 
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
     
 }

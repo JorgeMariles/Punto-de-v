@@ -115,11 +115,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(86, 65);
+            this.label1.Location = new System.Drawing.Point(108, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(132, 20);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Cantidades U o Kg";
+            this.label1.Text = "Cantidades/Kg";
             // 
             // label2
             // 
@@ -140,7 +140,7 @@
             this.label3.Size = new System.Drawing.Size(76, 31);
             this.label3.TabIndex = 7;
             this.label3.Text = "label3";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+           
             // 
             // label4
             // 
@@ -151,7 +151,7 @@
             this.label4.Size = new System.Drawing.Size(68, 31);
             this.label4.TabIndex = 8;
             this.label4.Text = "Total:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+           
             // 
             // Form1
             // 
