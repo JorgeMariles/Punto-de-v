@@ -45,7 +45,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Lime;
-            this.button1.Location = new System.Drawing.Point(336, 213);
+            this.button1.Location = new System.Drawing.Point(545, 149);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 53);
             this.button1.TabIndex = 0;
@@ -61,7 +61,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(178, 27);
             this.textBox1.TabIndex = 1;
-            
             // 
             // listView1
             // 
@@ -110,14 +109,13 @@
             this.cantidades.Name = "cantidades";
             this.cantidades.Size = new System.Drawing.Size(81, 27);
             this.cantidades.TabIndex = 4;
-            
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(108, 65);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 20);
+            this.label1.Size = new System.Drawing.Size(107, 20);
             this.label1.TabIndex = 5;
             this.label1.Text = "Cantidades/Kg";
             // 
@@ -140,7 +138,6 @@
             this.label3.Size = new System.Drawing.Size(76, 31);
             this.label3.TabIndex = 7;
             this.label3.Text = "label3";
-           
             // 
             // label4
             // 
@@ -151,7 +148,6 @@
             this.label4.Size = new System.Drawing.Size(68, 31);
             this.label4.TabIndex = 8;
             this.label4.Text = "Total:";
-           
             // 
             // Form1
             // 

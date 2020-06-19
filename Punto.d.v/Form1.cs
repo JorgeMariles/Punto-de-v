@@ -81,20 +81,34 @@ namespace Punto.d.v
 
         private void button2_Click(object sender, EventArgs e)
         {
-      
-            ListViewItem item = new ListViewItem(textBox1.Text);
-            for (int i = 0; i < Inventarioglob.Inventario.Count; i++) {
-                if (textBox1.Text == Inventarioglob.Inventario[i].Nombre)
+            bool pivot = false;
+            for (int z = 0; z < listView1.Items.Count; z++)
+            {
+               if(listView1.Items[z].SubItems[0].Text== textBox1.Text)
                 {
-                    string Price = Inventarioglob.Inventario[i].Precio;
-                    item.SubItems.Add(Price);
-                    break;
+                    double pre1 = Convert.ToDouble(listView1.Items[z].SubItems[2].Text) + Convert.ToDouble(cantidades.Text);
+                    listView1.Items[z].SubItems[2].Text = pre1.ToString();
+                    pivot = true;
                 }
-            }
-            item.SubItems.Add(cantidades.Text);
-            listView1.Items.Add(item);
 
-            //////////-----------------------
+            }
+
+            if (pivot ==false)
+            {
+                ListViewItem item = new ListViewItem(textBox1.Text);
+                for (int i = 0; i < Inventarioglob.Inventario.Count; i++)
+                {
+                    if (textBox1.Text == Inventarioglob.Inventario[i].Nombre)
+                    {
+                        string Price = Inventarioglob.Inventario[i].Precio;
+                        item.SubItems.Add(Price);
+                        break;
+                    }
+                }
+                item.SubItems.Add(cantidades.Text);
+                listView1.Items.Add(item);
+            }
+            //////////----------------------- Button1 clean service -------------------------
             textBox1.Clear();
             this.ActiveControl = textBox1;
             textBox1.Focus();
