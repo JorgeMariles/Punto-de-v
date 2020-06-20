@@ -7,10 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LumenWorks.Framework.IO.Csv;
+using LumenWorks.Framework.IO.Csv;//instalado
 using System.IO;
 using System.Diagnostics;
 using System.Drawing.Text;
+using CsvHelper;//instalado
+using System.Globalization;
+
+
 
 namespace Punto.d.v
 {
@@ -27,7 +31,9 @@ namespace Punto.d.v
             label3.Text = "0" + "$";
             Pago.Text = "0";
             cambiol.Text = "0" + "$";
-       
+            
+
+
         }
         //no se hacerlo de otra manera 
         static class Inventarioglob
@@ -40,7 +46,7 @@ namespace Punto.d.v
         {
 
             var csvTable = new DataTable();
-            using (var csvReader = new CsvReader(new StreamReader(System.IO.File.OpenRead(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv")), true))
+            using (var csvReader = new LumenWorks.Framework.IO.Csv.CsvReader(new StreamReader(System.IO.File.OpenRead(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv")), true))
             {
                 csvTable.Load(csvReader);
             }
@@ -74,7 +80,39 @@ namespace Punto.d.v
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("test");
+
+
+            List<SearchParameters> InventarioNew = new List<SearchParameters>();
+            for (int x = 0; x < listView1.Items.Count; x++)
+            {
+
+
+                for (int i = 0; i < Inventarioglob.Inventario.Count; i++)
+                {
+                    if (Inventarioglob.Inventario[i].Nombre == listView1.Items[x].SubItems[0].Text)
+                    {
+                        double num = Convert.ToDouble(Inventarioglob.Inventario[i].Inventario) - Convert.ToDouble(listView1.Items[x].SubItems[2].Text);
+                        
+                        InventarioNew.Add(new SearchParameters { Nombre = Inventarioglob.Inventario[i].Nombre, Precio = Inventarioglob.Inventario[i].Precio, Inventario = num.ToString() });
+
+                    }
+                    else
+                    {
+                        InventarioNew.Add(new SearchParameters { Nombre = Inventarioglob.Inventario[i].Nombre, Precio = Inventarioglob.Inventario[i].Precio, Inventario = Inventarioglob.Inventario[i].Inventario });
+                    }
+
+                    using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv"))
+                    using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                    {
+                        csv.WriteRecords(InventarioNew);
+                    }
+
+                }
+
+
+            }
+            Limpiaservice();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -144,7 +182,7 @@ namespace Punto.d.v
             }
         }
 
-        // remove characters from number only text boxes in order to stop crashes in operations
+        // ignore unwanted characters from number only text boxes in order to stop crashes in operations
         public string remove_unwanted (string s){
             string result = string.Empty;
             foreach (var c in s)
@@ -202,6 +240,13 @@ namespace Punto.d.v
 
         private void Limpiar_Click(object sender, EventArgs e)
         {
+            Limpiaservice();
+        }
+
+
+        public void Limpiaservice()
+        {
+            cambiarC.Text = "0";
             listView1.Items.Clear();
             this.ActiveControl = textBox1;
             textBox1.Focus();
@@ -210,10 +255,7 @@ namespace Punto.d.v
             Pago.Text = "0";
             cambiol.Text = "0" + "$";
         }
-
-
-
-
+        
     }
     
 }

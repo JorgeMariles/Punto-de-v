@@ -1,6 +1,5 @@
 # Punto-de-v
-This program is a selling point developed for my mohters business.
+This program is a selling point developed for my mothers business.
 
 
 
-ALL CODE IS SOCIALIST

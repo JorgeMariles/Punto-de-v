@@ -198,11 +198,12 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(684, 507);
+            this.label7.Location = new System.Drawing.Point(673, 505);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(196, 31);
             this.label7.TabIndex = 8;
             this.label7.Text = "Cambiar cantidad";
+            
             // 
             // cambiarC
             // 
