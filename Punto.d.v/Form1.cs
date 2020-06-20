@@ -35,25 +35,21 @@ namespace Punto.d.v
 
 
         }
-        //no se hacerlo de otra manera 
-        static class Inventarioglob
-        {
-            public static List<SearchParameters> Inventario = getitems();
-        }
+       
 
-        //lista global
-        public static List<SearchParameters> getitems()
-        {
+        //lista get lista
+        public  List<SearchParameters> getitems()
+     {
 
             var csvTable = new DataTable();
-            using (var csvReader = new LumenWorks.Framework.IO.Csv.CsvReader(new StreamReader(System.IO.File.OpenRead(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv")), true))
+            using (var csvReader = new LumenWorks.Framework.IO.Csv.CsvReader(new StreamReader(System.IO.File.OpenRead(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv")), false))
             {
                 csvTable.Load(csvReader);
             }
             List<SearchParameters> Inventario = new List<SearchParameters>();
             for (int i = 0; i < csvTable.Rows.Count; i++)
             {
-                Inventario.Add(new SearchParameters { Nombre = csvTable.Rows[i][0].ToString(), Unidad_Kg = csvTable.Rows[i][1].ToString(), Precio = csvTable.Rows[i][2].ToString(), Inventario = csvTable.Rows[i][2].ToString() });
+                Inventario.Add(new SearchParameters { Nombre = csvTable.Rows[i][0].ToString(), Unidad_Kg = csvTable.Rows[i][1].ToString(), Precio = csvTable.Rows[i][2].ToString(), Inventario = csvTable.Rows[i][3].ToString() });
 
             }
             return Inventario;
@@ -69,49 +65,47 @@ namespace Punto.d.v
 
 
         //auto completar
+       // Inventario.Count;
         public void autocomplete()
         {
+            List<SearchParameters> Inventario = getitems();
             AutoCompleteStringCollection data = new AutoCompleteStringCollection();
-            for (int i = 0; i < Inventarioglob.Inventario.Count; i++) {
-                data.Add(Inventarioglob.Inventario[i].Nombre);
+            for (int i = 0; i <Inventario.Count ; i++) {
+                data.Add(Inventario[i].Nombre);
             }
             textBox1.AutoCompleteCustomSource = data;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-
-            List<SearchParameters> InventarioNew = new List<SearchParameters>();
-            for (int x = 0; x < listView1.Items.Count; x++)
-            {
-
-
-                for (int i = 0; i < Inventarioglob.Inventario.Count; i++)
+                for (int x = 0; x < listView1.Items.Count; x++)
                 {
-                    if (Inventarioglob.Inventario[i].Nombre == listView1.Items[x].SubItems[0].Text)
-                    {
-                        double num = Convert.ToDouble(Inventarioglob.Inventario[i].Inventario) - Convert.ToDouble(listView1.Items[x].SubItems[2].Text);
-                        
-                        InventarioNew.Add(new SearchParameters { Nombre = Inventarioglob.Inventario[i].Nombre, Precio = Inventarioglob.Inventario[i].Precio, Inventario = num.ToString() });
 
+                List<SearchParameters> Inventario = getitems();
+                List<SearchParameters> InventarioNew = new List<SearchParameters>();
+                for (int i = 0; i < Inventario.Count; i++)
+                {
+                    if (Inventario[i].Nombre == listView1.Items[x].SubItems[0].Text)
+                    {
+                            double num = Convert.ToDouble(Inventario[i].Inventario) - Convert.ToDouble(listView1.Items[x].SubItems[2].Text);
+                            InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio,Unidad_Kg= Inventario[i].Unidad_Kg, Inventario = num.ToString() });
                     }
                     else
                     {
-                        InventarioNew.Add(new SearchParameters { Nombre = Inventarioglob.Inventario[i].Nombre, Precio = Inventarioglob.Inventario[i].Precio, Inventario = Inventarioglob.Inventario[i].Inventario });
+                            InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = Inventario[i].Inventario });
                     }
-
-                    using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv"))
-                    using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
-                    {
-                        csv.WriteRecords(InventarioNew);
-                    }
-
+                }
+                
+                    InventarioNew.RemoveAt(0);
+                
+                using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv"))
+                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                {
+                    csv.WriteRecords(InventarioNew);
                 }
 
-
             }
-            Limpiaservice();
+                    Limpiaservice();
 
         }
 
@@ -136,12 +130,13 @@ namespace Punto.d.v
 
             if (pivot == false)
             {
+                List<SearchParameters> Inventario = getitems();
                 ListViewItem item = new ListViewItem(textBox1.Text);
-                for (int i = 0; i < Inventarioglob.Inventario.Count; i++)
+                for (int i = 0; i < Inventario.Count; i++)
                 {
-                    if (textBox1.Text == Inventarioglob.Inventario[i].Nombre)
+                    if (textBox1.Text == Inventario[i].Nombre)
                     {
-                        string Price = Inventarioglob.Inventario[i].Precio;
+                        string Price = Inventario[i].Precio;
                         item.SubItems.Add(Price);
                         break;
                     }
