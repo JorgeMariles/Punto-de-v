@@ -310,7 +310,7 @@
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.Size = new System.Drawing.Size(1116, 41);
             this.TopPanel.TabIndex = 14;
-            this.TopPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.TopPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             // 
             // menos
             // 

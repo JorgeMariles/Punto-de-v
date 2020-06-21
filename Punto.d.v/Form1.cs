@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Drawing.Text;
 using CsvHelper;//instalado
 using System.Globalization;
+using System.Runtime.InteropServices;
 
 
 
@@ -334,7 +335,7 @@ namespace Punto.d.v
 
         private void cuadro_Click(object sender, EventArgs e)
         {
-            WindowState = FormWindowState.Maximized;
+           // WindowState = FormWindowState.Maximized;
         }
 
         private void Equis_Click(object sender, EventArgs e)
