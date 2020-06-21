@@ -31,9 +31,6 @@ namespace Punto.d.v
             label3.Text = "0" + "$";
             Pago.Text = "0";
             cambiol.Text = "0" + "$";
-            
-
-
         }
        
 
@@ -78,34 +75,50 @@ namespace Punto.d.v
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (Convert.ToDouble(remove_unwanted(Pago.Text)) >= Convert.ToDouble(remove_unwanted(label3.Text)) & listView1.Items.Count>0)
+            {
                 for (int x = 0; x < listView1.Items.Count; x++)
                 {
 
-                List<SearchParameters> Inventario = getitems();
-                List<SearchParameters> InventarioNew = new List<SearchParameters>();
-                for (int i = 0; i < Inventario.Count; i++)
-                {
-                    if (Inventario[i].Nombre == listView1.Items[x].SubItems[0].Text)
+                    List<SearchParameters> Inventario = getitems();
+                    List<SearchParameters> InventarioNew = new List<SearchParameters>();
+                    for (int i = 0; i < Inventario.Count; i++)
                     {
+                        if (Inventario[i].Nombre == listView1.Items[x].SubItems[0].Text)
+                        {
                             double num = Convert.ToDouble(Inventario[i].Inventario) - Convert.ToDouble(listView1.Items[x].SubItems[2].Text);
-                            InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio,Unidad_Kg= Inventario[i].Unidad_Kg, Inventario = num.ToString() });
-                    }
-                    else
-                    {
+                            InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = num.ToString() });
+                        }
+                        else
+                        {
                             InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = Inventario[i].Inventario });
+                        }
                     }
-                }
-                
+
                     InventarioNew.RemoveAt(0);
-                
-                using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv"))
-                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
-                {
-                    csv.WriteRecords(InventarioNew);
+
+                    using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv"))
+                    using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                    {
+                        csv.WriteRecords(InventarioNew);
+                    }
+
                 }
+                MessageBox.Show("Venta Exitosa");
+                Limpiaservice();
+                
 
             }
-                    Limpiaservice();
+            else if(listView1.Items.Count == 0)
+            {
+                MessageBox.Show("Ingrese productos");
+
+            }
+            else 
+            {
+                MessageBox.Show("Ingrese pago");
+
+            }
 
         }
 
@@ -116,40 +129,54 @@ namespace Punto.d.v
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // display the selected object to the listview, exclude new entries if it already exist, check price on inventary csv
-            bool pivot = false;
-            for (int z = 0; z < listView1.Items.Count; z++)
-            {
-                if (listView1.Items[z].SubItems[0].Text == textBox1.Text)
+            bool encontrado = false;
+            if (textBox1.Text != ""){
+                // display the selected object to the listview, exclude new entries if it already exist, check price on inventary csv
+                bool pivot = false;
+                for (int z = 0; z < listView1.Items.Count; z++)
                 {
-                    double pre1 = Convert.ToDouble(listView1.Items[z].SubItems[2].Text) + Convert.ToDouble(cantidades.Text);
-                    listView1.Items[z].SubItems[2].Text = pre1.ToString();
-                    pivot = true;
-                }
-            }
-
-            if (pivot == false)
-            {
-                List<SearchParameters> Inventario = getitems();
-                ListViewItem item = new ListViewItem(textBox1.Text);
-                for (int i = 0; i < Inventario.Count; i++)
-                {
-                    if (textBox1.Text == Inventario[i].Nombre)
+                    if (listView1.Items[z].SubItems[0].Text == textBox1.Text)
                     {
-                        string Price = Inventario[i].Precio;
-                        item.SubItems.Add(Price);
-                        break;
+                        double pre1 = Convert.ToDouble(listView1.Items[z].SubItems[2].Text) + Convert.ToDouble(cantidades.Text);
+                        listView1.Items[z].SubItems[2].Text = pre1.ToString();
+                        pivot = true;
+                        encontrado = true;
                     }
                 }
-                item.SubItems.Add(cantidades.Text);
-                listView1.Items.Add(item);
+
+                if (pivot == false)
+                {
+                    List<SearchParameters> Inventario = getitems();
+                    ListViewItem item = new ListViewItem(textBox1.Text);
+                    for (int i = 0; i < Inventario.Count; i++)
+                    {
+                        if (textBox1.Text == Inventario[i].Nombre)
+                        {
+                            string Price = Inventario[i].Precio;
+                            item.SubItems.Add(Price);
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    item.SubItems.Add(cantidades.Text);
+                    listView1.Items.Add(item);
+                }
+                //////////----------------------- Button1 clean service -------------------------
+                textBox1.Clear();
+                this.ActiveControl = textBox1;
+                textBox1.Focus();
+                cantidades.Text = "1";
+                if (encontrado == true)
+                {
+                    totalncambio();
+                    
+                }
+                else {
+                    listView1.Items.RemoveAt(listView1.Items.Count - 1);
+                    MessageBox.Show("Ingrese producto valido"); 
+                }
+                
             }
-            //////////----------------------- Button1 clean service -------------------------
-            textBox1.Clear();
-            this.ActiveControl = textBox1;
-            textBox1.Focus();
-            cantidades.Text = "1";
-            totalncambio();
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -157,8 +184,52 @@ namespace Punto.d.v
 
         }
 
+        private void Pago_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+        private void cantidades_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+        private void cambiarC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
         private void Pago_TextChanged(object sender, EventArgs e)
         {
+
             double total = Convert.ToDouble(remove_unwanted(label3.Text));
             if (remove_unwanted(Pago.Text) != "0"& remove_unwanted(Pago.Text) != "")
             {
@@ -175,6 +246,7 @@ namespace Punto.d.v
                 }
                 
             }
+
         }
 
         // ignore unwanted characters from number only text boxes in order to stop crashes in operations
@@ -192,7 +264,7 @@ namespace Punto.d.v
         //changes value from item selected 
         private void cambiarC_TextChanged(object sender, EventArgs e)
         {
-            if (remove_unwanted(cambiarC.Text) != "" & listView1.SelectedItems.Count>0)
+            if (remove_unwanted(cambiarC.Text) != "" & listView1.SelectedItems.Count>0 & remove_unwanted(cambiarC.Text)!=".")
             {
                 double num = Convert.ToDouble(remove_unwanted(cambiarC.Text));
                 listView1.SelectedItems[0].SubItems[2].Text = num.ToString();
@@ -238,7 +310,6 @@ namespace Punto.d.v
             Limpiaservice();
         }
 
-
         public void Limpiaservice()
         {
             cambiarC.Text = "0";
@@ -250,6 +321,47 @@ namespace Punto.d.v
             Pago.Text = "0";
             cambiol.Text = "0" + "$";
         }
+
+        private void Venta_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menos_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void cuadro_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Maximized;
+        }
+
+        private void Equis_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+
+
+        //dragable
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        private void Form1_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
         
     }
     
