@@ -48,7 +48,7 @@ namespace Punto.d.v
                 label1.Visible = false;
                 // The password is ok.
                 
-                Form1.inventarioopen();
+                //Form1.inventarioopen();
             }
             else
             {
