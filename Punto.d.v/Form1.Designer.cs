@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.SidePanel = new System.Windows.Forms.Panel();
             this.corte_menu = new System.Windows.Forms.Button();
             this.inventario_menu = new System.Windows.Forms.Button();
@@ -37,6 +38,7 @@
             this.cuadro = new System.Windows.Forms.Label();
             this.Equis = new System.Windows.Forms.Label();
             this.panelchilds = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SidePanel.SuspendLayout();
             this.TopPanel.SuspendLayout();
             this.SuspendLayout();
@@ -66,7 +68,6 @@
             this.corte_menu.TabStop = false;
             this.corte_menu.Text = "CORTE";
             this.corte_menu.UseVisualStyleBackColor = false;
-            this.corte_menu.Click += new System.EventHandler(this.Venta_Click);
             // 
             // inventario_menu
             // 
@@ -81,6 +82,7 @@
             this.inventario_menu.TabStop = false;
             this.inventario_menu.Text = "INVENTARIO";
             this.inventario_menu.UseVisualStyleBackColor = false;
+            this.inventario_menu.Click += new System.EventHandler(this.inventario_menu_Click);
             // 
             // vender_menu
             // 
@@ -95,10 +97,12 @@
             this.vender_menu.TabStop = false;
             this.vender_menu.Text = "VENDER";
             this.vender_menu.UseVisualStyleBackColor = false;
+            this.vender_menu.Click += new System.EventHandler(this.vender_menu_Click);
             // 
             // TopPanel
             // 
             this.TopPanel.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.TopPanel.AutoSize = true;
             this.TopPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(129)))), ((int)(((byte)(49)))));
             this.TopPanel.Controls.Add(this.menos);
             this.TopPanel.Controls.Add(this.cuadro);
@@ -150,19 +154,26 @@
             // 
             // panelchilds
             // 
-            this.panelchilds.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelchilds.Location = new System.Drawing.Point(137, 41);
+            this.panelchilds.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelchilds.Location = new System.Drawing.Point(137, 0);
             this.panelchilds.Name = "panelchilds";
             this.panelchilds.Size = new System.Drawing.Size(1116, 817);
             this.panelchilds.TabIndex = 15;
             this.panelchilds.Paint += new System.Windows.Forms.PaintEventHandler(this.panelchilds_Paint);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1253, 858);
-            this.Controls.Add(this.panelchilds);
             this.Controls.Add(this.TopPanel);
+            this.Controls.Add(this.panelchilds);
             this.Controls.Add(this.SidePanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
@@ -170,6 +181,7 @@
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -187,6 +199,7 @@
         private System.Windows.Forms.Label cuadro;
         private System.Windows.Forms.Label Equis;
         private System.Windows.Forms.Panel panelchilds;
+        public System.Windows.Forms.Timer timer1;
     }
 }
 

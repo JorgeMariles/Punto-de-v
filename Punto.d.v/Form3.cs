@@ -25,6 +25,7 @@ namespace Punto.d.v
         {
 
             InitializeComponent();
+            autocomplete();
             this.ActiveControl = textBox1;
             textBox1.Focus();
             cantidades.Text = "1";
@@ -326,6 +327,11 @@ namespace Punto.d.v
         }
 
         private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
         {
 
         }

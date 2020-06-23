@@ -87,7 +87,7 @@
             this.columnHeader3});
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(608, 43);
+            this.listView1.Location = new System.Drawing.Point(608, 66);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(486, 535);
             this.listView1.TabIndex = 0;
@@ -245,7 +245,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(617, 590);
+            this.label7.Location = new System.Drawing.Point(608, 622);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(196, 31);
             this.label7.TabIndex = 8;
@@ -256,7 +256,7 @@
             this.cambiarC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cambiarC.Location = new System.Drawing.Point(808, 594);
+            this.cambiarC.Location = new System.Drawing.Point(810, 626);
             this.cambiarC.Name = "cambiarC";
             this.cambiarC.Size = new System.Drawing.Size(125, 27);
             this.cambiarC.TabIndex = 0;
@@ -271,7 +271,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Limpiar.BackColor = System.Drawing.Color.OrangeRed;
             this.Limpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Limpiar.Location = new System.Drawing.Point(974, 584);
+            this.Limpiar.Location = new System.Drawing.Point(974, 616);
             this.Limpiar.Name = "Limpiar";
             this.Limpiar.Size = new System.Drawing.Size(120, 47);
             this.Limpiar.TabIndex = 0;
@@ -302,6 +302,7 @@
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form3";
+            this.Load += new System.EventHandler(this.Form3_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

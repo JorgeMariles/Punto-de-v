@@ -29,7 +29,7 @@ namespace Punto.d.v
 
         }
         private Form activeform = null;
-       private void openChildform(Form childfomr)
+       public void openChildform(Form childfomr)
         {
             if (activeform != null)
             
@@ -89,6 +89,40 @@ namespace Punto.d.v
         private void panelchilds_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        public static bool contraOK=false;
+        public static bool inventario_menubool = false;
+        private void inventario_menu_Click(object sender, EventArgs e)
+        {
+
+            Form contra = new Form2();
+            timer1.Enabled=true;
+            contra.BringToFront();
+            contra.Show();
+            inventario_menubool = true;
+           
+        }
+
+        private void vender_menu_Click(object sender, EventArgs e)
+        {
+             openChildform(new Form3());
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (contraOK == true)
+            {
+                contraOK = false;
+                {
+                    if (inventario_menubool == true)
+                    {
+                        openChildform(new Form4());
+                        inventario_menubool = false;
+                        timer1.Enabled = false;
+                    }
+                }
+            }
         }
     }
     

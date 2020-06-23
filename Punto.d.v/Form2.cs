@@ -23,10 +23,9 @@ namespace Punto.d.v
     {
         public Form2()
         {
-
             InitializeComponent();
+            this.ActiveControl = textBox1;
             textBox1.Focus();
-
         }
        
         private void Form2_Load_1(object sender, EventArgs e)
@@ -47,8 +46,9 @@ namespace Punto.d.v
             {
                 label1.Visible = false;
                 // The password is ok.
+                Form1.contraOK = true;
                 
-                //Form1.inventarioopen();
+                this.Close();
             }
             else
             {
@@ -57,8 +57,6 @@ namespace Punto.d.v
                 label1.Show();
                 textBox1.Focus();
             }
-
-            
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
