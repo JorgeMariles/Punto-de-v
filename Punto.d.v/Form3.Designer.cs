@@ -73,7 +73,7 @@
             this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.textBox1.Location = new System.Drawing.Point(75, 101);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(178, 27);
+            this.textBox1.Size = new System.Drawing.Size(178, 23);
             this.textBox1.TabIndex = 1;
             // 
             // listView1
@@ -87,8 +87,10 @@
             this.columnHeader3});
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
+            this.listView1.LabelWrap = false;
             this.listView1.Location = new System.Drawing.Point(608, 66);
             this.listView1.Name = "listView1";
+            this.listView1.ShowGroups = false;
             this.listView1.Size = new System.Drawing.Size(486, 535);
             this.listView1.TabIndex = 0;
             this.listView1.TabStop = false;
@@ -131,7 +133,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cantidades.Location = new System.Drawing.Point(270, 101);
             this.cantidades.Name = "cantidades";
-            this.cantidades.Size = new System.Drawing.Size(81, 27);
+            this.cantidades.Size = new System.Drawing.Size(81, 23);
             this.cantidades.TabIndex = 2;
             this.cantidades.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cantidades_KeyPress);
             // 
@@ -143,7 +145,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(258, 78);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 20);
+            this.label1.Size = new System.Drawing.Size(85, 15);
             this.label1.TabIndex = 5;
             this.label1.Text = "Cantidades/Kg";
             // 
@@ -155,7 +157,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(134, 78);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 20);
+            this.label2.Size = new System.Drawing.Size(56, 15);
             this.label2.TabIndex = 6;
             this.label2.Text = "Producto";
             // 
@@ -169,7 +171,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(482, 131);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 31);
+            this.label3.Size = new System.Drawing.Size(32, 25);
             this.label3.TabIndex = 7;
             this.label3.Text = "0$";
             // 
@@ -182,7 +184,7 @@
             this.label4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label4.Location = new System.Drawing.Point(383, 131);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 31);
+            this.label4.Size = new System.Drawing.Size(56, 25);
             this.label4.TabIndex = 8;
             this.label4.Text = "Total:";
             // 
@@ -194,7 +196,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(161, 189);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 20);
+            this.label5.Size = new System.Drawing.Size(34, 15);
             this.label5.TabIndex = 9;
             this.label5.Text = "Pago";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -206,7 +208,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Pago.Location = new System.Drawing.Point(209, 186);
             this.Pago.Name = "Pago";
-            this.Pago.Size = new System.Drawing.Size(125, 27);
+            this.Pago.Size = new System.Drawing.Size(125, 23);
             this.Pago.TabIndex = 4;
             this.Pago.TextChanged += new System.EventHandler(this.Pago_TextChanged);
             this.Pago.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Pago_KeyPress);
@@ -220,7 +222,7 @@
             this.label6.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label6.Location = new System.Drawing.Point(359, 182);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 31);
+            this.label6.Size = new System.Drawing.Size(81, 25);
             this.label6.TabIndex = 8;
             this.label6.Text = "Cambio:";
             // 
@@ -234,7 +236,7 @@
             this.cambiol.ForeColor = System.Drawing.Color.Black;
             this.cambiol.Location = new System.Drawing.Point(482, 182);
             this.cambiol.Name = "cambiol";
-            this.cambiol.Size = new System.Drawing.Size(38, 31);
+            this.cambiol.Size = new System.Drawing.Size(32, 25);
             this.cambiol.TabIndex = 7;
             this.cambiol.Text = "0$";
             // 
@@ -247,7 +249,7 @@
             this.label7.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label7.Location = new System.Drawing.Point(608, 622);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(196, 31);
+            this.label7.Size = new System.Drawing.Size(161, 25);
             this.label7.TabIndex = 8;
             this.label7.Text = "Cambiar cantidad";
             // 
@@ -258,7 +260,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cambiarC.Location = new System.Drawing.Point(810, 626);
             this.cambiarC.Name = "cambiarC";
-            this.cambiarC.Size = new System.Drawing.Size(125, 27);
+            this.cambiarC.Size = new System.Drawing.Size(125, 23);
             this.cambiarC.TabIndex = 0;
             this.cambiarC.TabStop = false;
             this.cambiarC.TextChanged += new System.EventHandler(this.cambiarC_TextChanged);

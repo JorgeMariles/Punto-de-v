@@ -14,6 +14,7 @@ using System.Drawing.Text;
 using CsvHelper;//instalado
 using System.Globalization;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Punto.d.v
 {
@@ -34,7 +35,16 @@ namespace Punto.d.v
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            List<SearchParameters> Inventario = getitems();
             Nombre.Text = textBox1.Text;
+            for (int i = 0; i < Inventario.Count; i++)
+            {
+                if (Inventario[i].Nombre == textBox1.Text)
+                    write(i);
+
+
+            }
+
         }
         public List<SearchParameters> getitems()
         {
@@ -61,6 +71,13 @@ namespace Punto.d.v
             public string Inventario { get; set; }
         }
 
+        public void write(int i)
+        {
+            List<SearchParameters> Inventario = getitems();
+            Precio.Text = Inventario[i].Precio;
+            Unidades.Text = Inventario[i].Inventario;
+            Kg_unidades.Text = Inventario[i].Unidad_Kg;
+        }
 
         public void autocomplete()
         {
@@ -73,7 +90,116 @@ namespace Punto.d.v
             textBox1.AutoCompleteCustomSource = data;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            clear();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Form4_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Precio_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            List<SearchParameters> Inventario = getitems();
+            Nombre.Text = textBox1.Text;
+            for (int i = 0; i < Inventario.Count; i++)
+            {
+                if (Inventario[i].Nombre == textBox1.Text)
+                    write(i);
+            }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Cambio_Click(object sender, EventArgs e)
+        {
+            List<SearchParameters> Inventario = getitems();
+            List<SearchParameters> InventarioNew = new List<SearchParameters>();
+            int Cant = 0;
+            for (int i = 0; i < Inventario.Count; i++)
+            {
+                if (Inventario[i].Nombre == textBox1.Text)
+                {
+                    
+                    InventarioNew.Add(new SearchParameters { Nombre = Nombre.Text, Precio = remove_unwanted(Precio.Text), Unidad_Kg = Kg_unidades.Text, Inventario =remove_unwanted(Unidades.Text)  });
+                }
+                else
+                {
+                    InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = Inventario[i].Inventario });
+                    Cant = Cant++;
+                }
+
+            }
+            if (Cant == InventarioNew.Count){
+                MessageBox.Show("No se hizo ningun cambio");
+            }
+
+            else
+            {
+                MessageBox.Show("Cambio realizado");
+            }
+            InventarioNew.RemoveAt(0);
+
+            using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv"))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(InventarioNew);
+            }
+
+            clear();
 
 
+        }
+
+        private void clear()
+        {
+            textBox1.Clear();
+            Precio.Clear();
+            Unidades.Clear();
+            Kg_unidades.Clear();
+            Nombre.Clear();
+            textBox1.Clear();
+        }
+
+        // ignore unwanted characters from number only text boxes in order to stop crashes in operations
+        public string remove_unwanted(string s)
+        {
+            string result = string.Empty;
+            foreach (var c in s)
+            {
+                int ascii = (int)c;
+                if ((ascii >= 48 && ascii <= 57) || ascii == 44 || ascii == 46)
+                    result += c;
+            }
+            return result;
+        }
+
+        private void Unidades_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Kg_unidades_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+       
     }
-}
+    }
+

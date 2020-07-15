@@ -134,7 +134,7 @@
             this.cuadro.AutoSize = true;
             this.cuadro.Location = new System.Drawing.Point(1058, 9);
             this.cuadro.Name = "cuadro";
-            this.cuadro.Size = new System.Drawing.Size(22, 20);
+            this.cuadro.Size = new System.Drawing.Size(18, 15);
             this.cuadro.TabIndex = 0;
             this.cuadro.Text = "❏";
             this.cuadro.Click += new System.EventHandler(this.cuadro_Click);
@@ -147,7 +147,7 @@
             this.Equis.AutoSize = true;
             this.Equis.Location = new System.Drawing.Point(1086, 9);
             this.Equis.Name = "Equis";
-            this.Equis.Size = new System.Drawing.Size(18, 20);
+            this.Equis.Size = new System.Drawing.Size(14, 15);
             this.Equis.TabIndex = 0;
             this.Equis.Text = "X";
             this.Equis.Click += new System.EventHandler(this.Equis_Click);
