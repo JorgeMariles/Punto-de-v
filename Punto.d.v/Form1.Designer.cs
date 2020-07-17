@@ -68,6 +68,7 @@
             this.corte_menu.TabStop = false;
             this.corte_menu.Text = "CORTE";
             this.corte_menu.UseVisualStyleBackColor = false;
+            this.corte_menu.Click += new System.EventHandler(this.corte_menu_Click);
             // 
             // inventario_menu
             // 

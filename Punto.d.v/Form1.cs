@@ -26,13 +26,13 @@ namespace Punto.d.v
 
             InitializeComponent();
             openChildform(new Form3());
+           
 
         }
         private Form activeform = null;
        public void openChildform(Form childfomr)
         {
             if (activeform != null)
-            
                 activeform.Close();
                 activeform = childfomr;
                 childfomr.TopLevel = false;
@@ -46,10 +46,7 @@ namespace Punto.d.v
         }
 
        
-        private void Venta_Click(object sender, EventArgs e)
-        {
-            openChildform(new Form3());
-        }
+       
 
         private void menos_Click(object sender, EventArgs e)
         {
@@ -123,6 +120,11 @@ namespace Punto.d.v
                     }
                 }
             }
+        }
+
+        private void corte_menu_Click(object sender, EventArgs e)
+        {
+            openChildform(new Form5());
         }
     }
     

@@ -26,6 +26,7 @@ namespace Punto.d.v
             autocomplete();
             this.ActiveControl = textBox1;
             textBox1.Focus();
+            lista();
         }
 
         private void Inventario_Click(object sender, EventArgs e)
@@ -168,6 +169,7 @@ namespace Punto.d.v
             Nombre.Clear();
             textBox1.Clear();
             autocomplete();
+            lista();
         }
 
         // ignore unwanted characters from number only text boxes in order to stop crashes in operations
@@ -221,20 +223,45 @@ namespace Punto.d.v
         //crear nuevo elemento
         private void button3_Click(object sender, EventArgs e)
         {
+            if (Nombre.Text != "")
+            {
+                List<SearchParameters> Inventario = getitems();
+                List<SearchParameters> InventarioNew = new List<SearchParameters>();
+                for (int i = 0; i < Inventario.Count; i++)
+                {
+                    InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = Inventario[i].Inventario });
+                }
+                InventarioNew.Add(new SearchParameters { Nombre = Nombre.Text, Precio = remove_unwanted(Precio.Text), Unidad_Kg = Kg_unidades.Text, Inventario = remove_unwanted(Unidades.Text) });
+                InventarioNew.RemoveAt(0);
+                using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv"))
+                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                {
+                    csv.WriteRecords(InventarioNew);
+                }
+                MessageBox.Show("Elemento " + textBox1.Text + " fue" + " creado");
+                clear();
+            }
+            else
+                MessageBox.Show("el elemento no pudo ser creado");
+
+
+        }
+        private void lista()
+        {
             List<SearchParameters> Inventario = getitems();
-            List<SearchParameters> InventarioNew = new List<SearchParameters>(); 
-            for (int i = 0; i < Inventario.Count; i++)
+            listView1.Items.Clear();
+            for (int i = 1; i < Inventario.Count; i++)
             {
-               InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = Inventario[i].Inventario });   
+                ListViewItem item2 = new ListViewItem(Inventario[i].Nombre);
+                item2.SubItems.Add(Inventario[i].Precio+" $");
+                item2.SubItems.Add(Inventario[i].Inventario);
+                item2.SubItems.Add(Inventario[i].Unidad_Kg);
+                listView1.Items.Add(item2);
             }
-            InventarioNew.Add(new SearchParameters { Nombre = Nombre.Text, Precio = remove_unwanted(Precio.Text), Unidad_Kg = Kg_unidades.Text, Inventario =remove_unwanted(Unidades.Text)  });
-            InventarioNew.RemoveAt(0);
-            using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv"))
-            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
-            {
-                csv.WriteRecords(InventarioNew);
-            }
-            clear();
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
