@@ -41,10 +41,7 @@ namespace Punto.d.v
             {
                 if (Inventario[i].Nombre == textBox1.Text)
                     write(i);
-
-
             }
-
         }
         public List<SearchParameters> getitems()
         {
@@ -135,13 +132,12 @@ namespace Punto.d.v
             {
                 if (Inventario[i].Nombre == textBox1.Text)
                 {
-                    
                     InventarioNew.Add(new SearchParameters { Nombre = Nombre.Text, Precio = remove_unwanted(Precio.Text), Unidad_Kg = Kg_unidades.Text, Inventario =remove_unwanted(Unidades.Text)  });
                 }
                 else
                 {
                     InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = Inventario[i].Inventario });
-                    Cant = Cant++;
+                    Cant++;
                 }
 
             }
@@ -160,10 +156,7 @@ namespace Punto.d.v
             {
                 csv.WriteRecords(InventarioNew);
             }
-
             clear();
-
-
         }
 
         private void clear()
@@ -174,6 +167,7 @@ namespace Punto.d.v
             Kg_unidades.Clear();
             Nombre.Clear();
             textBox1.Clear();
+            autocomplete();
         }
 
         // ignore unwanted characters from number only text boxes in order to stop crashes in operations
@@ -198,8 +192,51 @@ namespace Punto.d.v
         {
             
         }
+        //eliminar elemento
+        private void button4_Click(object sender, EventArgs e)
+        {
+            List<SearchParameters> Inventario = getitems();
+            List<SearchParameters> InventarioNew = new List<SearchParameters>();
+            int count = 0;
+            for (int i = 0; i < Inventario.Count; i++)
+            {
+                if (Inventario[i].Nombre != textBox1.Text)
+                {
+                    InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = Inventario[i].Inventario });
+                    count++;
+                }
+            }
+            InventarioNew.RemoveAt(0);
+            using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv"))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(InventarioNew);
+            }
+            MessageBox.Show("Elemento "+textBox1.Text+" fue" +" eliminado");
+            clear();
 
-       
+
+        }
+
+        //crear nuevo elemento
+        private void button3_Click(object sender, EventArgs e)
+        {
+            List<SearchParameters> Inventario = getitems();
+            List<SearchParameters> InventarioNew = new List<SearchParameters>(); 
+            for (int i = 0; i < Inventario.Count; i++)
+            {
+               InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = Inventario[i].Inventario });   
+            }
+            InventarioNew.Add(new SearchParameters { Nombre = Nombre.Text, Precio = remove_unwanted(Precio.Text), Unidad_Kg = Kg_unidades.Text, Inventario =remove_unwanted(Unidades.Text)  });
+            InventarioNew.RemoveAt(0);
+            using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv"))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(InventarioNew);
+            }
+            clear();
+
+        }
     }
     }
 

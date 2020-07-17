@@ -43,7 +43,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.agregarlabel = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Inventario
@@ -75,7 +76,7 @@
             this.Nombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Nombre.Name = "Nombre";
             this.Nombre.Size = new System.Drawing.Size(110, 23);
-            this.Nombre.TabIndex = 1;
+            this.Nombre.TabIndex = 2;
             // 
             // Unidades
             // 
@@ -85,7 +86,7 @@
             this.Unidades.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Unidades.Name = "Unidades";
             this.Unidades.Size = new System.Drawing.Size(110, 23);
-            this.Unidades.TabIndex = 1;
+            this.Unidades.TabIndex = 4;
             this.Unidades.TextChanged += new System.EventHandler(this.Unidades_TextChanged);
             // 
             // Kg_unidades
@@ -96,7 +97,7 @@
             this.Kg_unidades.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Kg_unidades.Name = "Kg_unidades";
             this.Kg_unidades.Size = new System.Drawing.Size(110, 23);
-            this.Kg_unidades.TabIndex = 1;
+            this.Kg_unidades.TabIndex = 5;
             this.Kg_unidades.TextChanged += new System.EventHandler(this.Kg_unidades_TextChanged);
             // 
             // label1
@@ -118,7 +119,7 @@
             this.Precio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Precio.Name = "Precio";
             this.Precio.Size = new System.Drawing.Size(110, 23);
-            this.Precio.TabIndex = 1;
+            this.Precio.TabIndex = 3;
             this.Precio.TextChanged += new System.EventHandler(this.Precio_TextChanged);
             // 
             // label2
@@ -156,11 +157,12 @@
             // 
             this.Cambio.BackColor = System.Drawing.Color.GreenYellow;
             this.Cambio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Cambio.Location = new System.Drawing.Point(691, 98);
+            this.Cambio.Location = new System.Drawing.Point(686, 99);
             this.Cambio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Cambio.Name = "Cambio";
             this.Cambio.Size = new System.Drawing.Size(108, 31);
             this.Cambio.TabIndex = 2;
+            this.Cambio.TabStop = false;
             this.Cambio.Text = "Hacer cambio";
             this.Cambio.UseVisualStyleBackColor = false;
             this.Cambio.Click += new System.EventHandler(this.Cambio_Click);
@@ -169,11 +171,12 @@
             // 
             this.button1.BackColor = System.Drawing.Color.OrangeRed;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(805, 98);
+            this.button1.Location = new System.Drawing.Point(800, 99);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(71, 31);
             this.button1.TabIndex = 3;
+            this.button1.TabStop = false;
             this.button1.Text = "Cancelar";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -192,17 +195,47 @@
             this.button2.BackColor = System.Drawing.Color.SkyBlue;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button2.Location = new System.Drawing.Point(901, 90);
+            this.button2.Location = new System.Drawing.Point(740, 135);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 49);
             this.button2.TabIndex = 6;
+            this.button2.TabStop = false;
             this.button2.Text = "Regresar valores";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-         
+            // agregarlabel
             // 
-           
+            this.agregarlabel.Location = new System.Drawing.Point(0, 0);
+            this.agregarlabel.Name = "agregarlabel";
+            this.agregarlabel.Size = new System.Drawing.Size(100, 23);
+            this.agregarlabel.TabIndex = 1;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.GreenYellow;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(902, 93);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(86, 42);
+            this.button3.TabIndex = 7;
+            this.button3.TabStop = false;
+            this.button3.Text = "Crear nuevo elemento";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.OrangeRed;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(994, 93);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 42);
+            this.button4.TabIndex = 8;
+            this.button4.TabStop = false;
+            this.button4.Text = "Eliminar elemento";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form4
             // 
@@ -210,7 +243,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1100, 778);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.agregarlabel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.panel1);
@@ -253,6 +287,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label agregarlabel;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
