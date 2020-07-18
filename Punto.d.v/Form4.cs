@@ -55,7 +55,7 @@ namespace Punto.d.v
             List<SearchParameters> Inventario = new List<SearchParameters>();
             for (int i = 0; i < csvTable.Rows.Count; i++)
             {
-                Inventario.Add(new SearchParameters { Nombre = csvTable.Rows[i][0].ToString(), Unidad_Kg = csvTable.Rows[i][1].ToString(), Precio = csvTable.Rows[i][2].ToString(), Inventario = csvTable.Rows[i][3].ToString() });
+                Inventario.Add(new SearchParameters { Nombre = csvTable.Rows[i][0].ToString(), Unidad_Kg = csvTable.Rows[i][1].ToString(), Precio = csvTable.Rows[i][2].ToString(), Inventario = csvTable.Rows[i][3].ToString(), Costo = csvTable.Rows[i][4].ToString() });
 
             }
             return Inventario;
@@ -67,11 +67,13 @@ namespace Punto.d.v
             public string Unidad_Kg { get; set; }
             public string Precio { get; set; }
             public string Inventario { get; set; }
+            public string Costo { get; set; }
         }
 
         public void write(int i)
         {
             List<SearchParameters> Inventario = getitems();
+            Costo.Text= Inventario[i].Costo;
             Precio.Text = Inventario[i].Precio;
             Unidades.Text = Inventario[i].Inventario;
             Kg_unidades.Text = Inventario[i].Unidad_Kg;
@@ -133,16 +135,17 @@ namespace Punto.d.v
             {
                 if (Inventario[i].Nombre == textBox1.Text)
                 {
-                    InventarioNew.Add(new SearchParameters { Nombre = Nombre.Text, Precio = remove_unwanted(Precio.Text), Unidad_Kg = Kg_unidades.Text, Inventario =remove_unwanted(Unidades.Text)  });
+                    InventarioNew.Add(new SearchParameters { Nombre = Nombre.Text, Precio = remove_unwanted(Precio.Text), Unidad_Kg = Kg_unidades.Text, Inventario = remove_unwanted(Unidades.Text),Costo= remove_unwanted(Costo.Text) });
                 }
                 else
                 {
-                    InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = Inventario[i].Inventario });
+                    InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = Inventario[i].Inventario,Costo= Inventario[i].Costo });
                     Cant++;
                 }
 
             }
-            if (Cant == InventarioNew.Count){
+            if (Cant == InventarioNew.Count)
+            {
                 MessageBox.Show("No se hizo ningun cambio");
             }
 
@@ -163,6 +166,7 @@ namespace Punto.d.v
         private void clear()
         {
             textBox1.Clear();
+            Costo.Clear();
             Precio.Clear();
             Unidades.Clear();
             Kg_unidades.Clear();
@@ -192,7 +196,7 @@ namespace Punto.d.v
 
         private void Kg_unidades_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
         //eliminar elemento
         private void button4_Click(object sender, EventArgs e)
@@ -204,7 +208,7 @@ namespace Punto.d.v
             {
                 if (Inventario[i].Nombre != textBox1.Text)
                 {
-                    InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = Inventario[i].Inventario });
+                    InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = Inventario[i].Inventario, Costo = Inventario[i].Costo });
                     count++;
                 }
             }
@@ -214,7 +218,7 @@ namespace Punto.d.v
             {
                 csv.WriteRecords(InventarioNew);
             }
-            MessageBox.Show("Elemento "+textBox1.Text+" fue" +" eliminado");
+            MessageBox.Show("Elemento " + textBox1.Text + " fue" + " eliminado");
             clear();
 
 
@@ -229,9 +233,9 @@ namespace Punto.d.v
                 List<SearchParameters> InventarioNew = new List<SearchParameters>();
                 for (int i = 0; i < Inventario.Count; i++)
                 {
-                    InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = Inventario[i].Inventario });
+                    InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = Inventario[i].Inventario, Costo = Inventario[i].Costo });
                 }
-                InventarioNew.Add(new SearchParameters { Nombre = Nombre.Text, Precio = remove_unwanted(Precio.Text), Unidad_Kg = Kg_unidades.Text, Inventario = remove_unwanted(Unidades.Text) });
+                InventarioNew.Add(new SearchParameters { Nombre = Nombre.Text, Precio = remove_unwanted(Precio.Text), Unidad_Kg = Kg_unidades.Text, Inventario = remove_unwanted(Unidades.Text),Costo=remove_unwanted(Costo.Text) });
                 InventarioNew.RemoveAt(0);
                 using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv"))
                 using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
@@ -253,7 +257,8 @@ namespace Punto.d.v
             for (int i = 1; i < Inventario.Count; i++)
             {
                 ListViewItem item2 = new ListViewItem(Inventario[i].Nombre);
-                item2.SubItems.Add(Inventario[i].Precio+" $");
+                item2.SubItems.Add(Inventario[i].Costo + " $");
+                item2.SubItems.Add(Inventario[i].Precio + " $");
                 item2.SubItems.Add(Inventario[i].Inventario);
                 item2.SubItems.Add(Inventario[i].Unidad_Kg);
                 listView1.Items.Add(item2);
@@ -264,6 +269,8 @@ namespace Punto.d.v
         {
 
         }
+
+       
     }
     }
 

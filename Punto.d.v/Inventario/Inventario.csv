@@ -1,5 +1,6 @@
-Nombre,Unidad_Kg,Precio,Inventario
-Chetos azules,U,12,16
-Danonino Grande,U,10,10
-Queso manchego,KG,10,10
-Chicle,U,10,5
+Nombre,Unidad_Kg,Precio,Inventario,Costo
+Chetos azules,U,12,16,1
+Danonino Grande,U,10,7,1
+Queso manchego,KG,10,10,1
+Chicle,U,10,5,1
+Chocolate,kg,10,100,1

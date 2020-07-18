@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.SidePanel = new System.Windows.Forms.Panel();
-            this.corte_menu = new System.Windows.Forms.Button();
+            this.historial_menu = new System.Windows.Forms.Button();
             this.inventario_menu = new System.Windows.Forms.Button();
             this.vender_menu = new System.Windows.Forms.Button();
             this.TopPanel = new System.Windows.Forms.Panel();
@@ -39,6 +39,7 @@
             this.Equis = new System.Windows.Forms.Label();
             this.panelchilds = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.SidePanel.SuspendLayout();
             this.TopPanel.SuspendLayout();
             this.SuspendLayout();
@@ -46,7 +47,7 @@
             // SidePanel
             // 
             this.SidePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
-            this.SidePanel.Controls.Add(this.corte_menu);
+            this.SidePanel.Controls.Add(this.historial_menu);
             this.SidePanel.Controls.Add(this.inventario_menu);
             this.SidePanel.Controls.Add(this.vender_menu);
             this.SidePanel.Dock = System.Windows.Forms.DockStyle.Left;
@@ -55,20 +56,20 @@
             this.SidePanel.Size = new System.Drawing.Size(137, 858);
             this.SidePanel.TabIndex = 13;
             // 
-            // corte_menu
+            // historial_menu
             // 
-            this.corte_menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
-            this.corte_menu.FlatAppearance.BorderSize = 0;
-            this.corte_menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.corte_menu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.corte_menu.Location = new System.Drawing.Point(0, 164);
-            this.corte_menu.Name = "corte_menu";
-            this.corte_menu.Size = new System.Drawing.Size(137, 69);
-            this.corte_menu.TabIndex = 0;
-            this.corte_menu.TabStop = false;
-            this.corte_menu.Text = "CORTE";
-            this.corte_menu.UseVisualStyleBackColor = false;
-            this.corte_menu.Click += new System.EventHandler(this.corte_menu_Click);
+            this.historial_menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.historial_menu.FlatAppearance.BorderSize = 0;
+            this.historial_menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.historial_menu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.historial_menu.Location = new System.Drawing.Point(0, 164);
+            this.historial_menu.Name = "historial_menu";
+            this.historial_menu.Size = new System.Drawing.Size(137, 69);
+            this.historial_menu.TabIndex = 0;
+            this.historial_menu.TabStop = false;
+            this.historial_menu.Text = "HISTORIAL";
+            this.historial_menu.UseVisualStyleBackColor = false;
+            this.historial_menu.Click += new System.EventHandler(this.historial_menu_Click);
             // 
             // inventario_menu
             // 
@@ -169,6 +170,11 @@
             this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // timer2
+            // 
+            this.timer2.Interval = 500;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Form1
             // 
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -194,13 +200,14 @@
         private System.Windows.Forms.Panel SidePanel;
         private System.Windows.Forms.Panel TopPanel;
         private System.Windows.Forms.Button vender_menu;
-        private System.Windows.Forms.Button corte_menu;
+        private System.Windows.Forms.Button historial_menu;
         private System.Windows.Forms.Button inventario_menu;
         private System.Windows.Forms.Label menos;
         private System.Windows.Forms.Label cuadro;
         private System.Windows.Forms.Label Equis;
         private System.Windows.Forms.Panel panelchilds;
         public System.Windows.Forms.Timer timer1;
+        public System.Windows.Forms.Timer timer2;
     }
 }
 

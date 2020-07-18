@@ -45,9 +45,6 @@ namespace Punto.d.v
             
         }
 
-       
-       
-
         private void menos_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
@@ -87,23 +84,21 @@ namespace Punto.d.v
         {
 
         }
-
+        private void vender_menu_Click(object sender, EventArgs e)
+        {
+            openChildform(new Form3());
+        }
+        //inventario
         public static bool contraOK=false;
         public static bool inventario_menubool = false;
         private void inventario_menu_Click(object sender, EventArgs e)
         {
-
             Form contra = new Form2();
             timer1.Enabled=true;
+            timer2.Enabled = false;
             contra.BringToFront();
             contra.Show();
             inventario_menubool = true;
-           
-        }
-
-        private void vender_menu_Click(object sender, EventArgs e)
-        {
-             openChildform(new Form3());
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -111,21 +106,49 @@ namespace Punto.d.v
             if (contraOK == true)
             {
                 contraOK = false;
-                {
-                    if (inventario_menubool == true)
+                if (inventario_menubool == true)
                     {
                         openChildform(new Form4());
                         inventario_menubool = false;
                         timer1.Enabled = false;
+                       
                     }
-                }
+                
+            }
+        }
+        //historail
+        public static bool historial_menubool = false;
+        private void historial_menu_Click(object sender, EventArgs e)
+        {
+            Form contra = new Form2(); 
+            timer1.Enabled = false;
+            timer2.Enabled = true;
+            contra.BringToFront();
+            contra.Show();
+            historial_menubool = true;
+        } 
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (contraOK == true)
+            {
+                contraOK = false;
+                if (historial_menubool == true)
+                    {
+                        openChildform(new Form5());
+                        historial_menubool = false;
+                        timer2.Enabled = false;
+                       
+                    }
             }
         }
 
-        private void corte_menu_Click(object sender, EventArgs e)
-        {
-            openChildform(new Form5());
-        }
+
+
+
+
+
+
+
     }
     
 }
