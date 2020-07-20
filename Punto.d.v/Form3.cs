@@ -85,7 +85,7 @@ namespace Punto.d.v
             int count = 0;
             foreach(string Filename in FilesVenta)
             {
-                if (Filename == fecha)
+                if (Filename == @"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Ventas\" + fecha + ".csv")
                 {
                     var csvTable = new DataTable();
                     using (var csvReader = new LumenWorks.Framework.IO.Csv.CsvReader(new StreamReader(System.IO.File.OpenRead(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Ventas\" + fecha + ".csv")), false))
@@ -127,15 +127,15 @@ namespace Punto.d.v
             }
             textBox1.AutoCompleteCustomSource = data;
         }
-
+        //vender 
         private void button1_Click(object sender, EventArgs e)
         {
             if (Convert.ToDouble(remove_unwanted(Pago.Text)) >= Convert.ToDouble(remove_unwanted(label3.Text)) & listView1.Items.Count > 0)
             {
-                List<VentaParameters> Venta = new List<VentaParameters>();
+                List<VentaParameters> ventas = getventas(fecha());
                 for (int x = 0; x < listView1.Items.Count; x++)
                 {
-
+                    
                     List<SearchParameters> Inventario = getitems();
                     List<SearchParameters> InventarioNew = new List<SearchParameters>();
                     for (int i = 0; i < Inventario.Count; i++)
@@ -144,6 +144,7 @@ namespace Punto.d.v
                         {
                             double num = Convert.ToDouble(Inventario[i].Inventario) - Convert.ToDouble(listView1.Items[x].SubItems[2].Text);
                             InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = num.ToString(), Costo = Inventario[i].Costo });
+                            ventas.Add(new VentaParameters { Nombre = Inventario[i].Nombre,Precio= Inventario[i].Precio,Cantidades= listView1.Items[x].SubItems[2].Text,Costo= Inventario[i].Costo });
                         }
                         else
                         {
@@ -160,6 +161,13 @@ namespace Punto.d.v
                     }
 
                 }
+                ventas.RemoveAt(0);
+                using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Ventas\" + fecha() + ".csv"))
+                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                {
+                    csv.WriteRecords(ventas);
+                }
+
                 MessageBox.Show("Venta Exitosa");
                 Limpiaservice();
 
