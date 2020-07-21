@@ -34,6 +34,10 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.totallab = new System.Windows.Forms.Label();
+            this.gain = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // columnHeader1
@@ -67,7 +71,7 @@
             this.listView1.Location = new System.Drawing.Point(481, 81);
             this.listView1.Name = "listView1";
             this.listView1.ShowGroups = false;
-            this.listView1.Size = new System.Drawing.Size(623, 720);
+            this.listView1.Size = new System.Drawing.Size(606, 720);
             this.listView1.TabIndex = 0;
             this.listView1.TabStop = false;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -86,18 +90,61 @@
             this.monthCalendar1.TabIndex = 1;
             this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(107, 262);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(195, 45);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Ventas total:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(72, 333);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(230, 45);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Ganancia total:";
+            // 
+            // totallab
+            // 
+            this.totallab.AutoSize = true;
+            this.totallab.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.totallab.Location = new System.Drawing.Point(334, 262);
+            this.totallab.Name = "totallab";
+            this.totallab.Size = new System.Drawing.Size(0, 45);
+            this.totallab.TabIndex = 2;
+            // 
+            // gain
+            // 
+            this.gain.AutoSize = true;
+            this.gain.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.gain.Location = new System.Drawing.Point(334, 333);
+            this.gain.Name = "gain";
+            this.gain.Size = new System.Drawing.Size(0, 45);
+            this.gain.TabIndex = 2;
+            // 
             // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1116, 817);
+            this.Controls.Add(this.gain);
+            this.Controls.Add(this.totallab);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.listView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form5";
             this.Text = "Form5";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -109,5 +156,9 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label totallab;
+        private System.Windows.Forms.Label gain;
     }
 }

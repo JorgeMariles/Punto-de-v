@@ -217,7 +217,7 @@ namespace Punto.d.v
                     {
                         if (textBox1.Text == Inventario[i].Nombre)
                         {
-                            string Price = Inventario[i].Precio;
+                            string Price = Inventario[i].Precio+"$";
                             item.SubItems.Add(Price);
                             encontrado = true;
                             break;
@@ -334,7 +334,7 @@ namespace Punto.d.v
             if (remove_unwanted(cambiarC.Text) != "" & listView1.SelectedItems.Count > 0 & remove_unwanted(cambiarC.Text) != ".")
             {
                 double num = Convert.ToDouble(remove_unwanted(cambiarC.Text));
-                listView1.SelectedItems[0].SubItems[2].Text = num.ToString();
+                listView1.SelectedItems[0].SubItems[2].Text = num.ToString()+"$";
             }
             if (remove_unwanted(cambiarC.Text) == "" & listView1.SelectedItems.Count > 0)
             {
@@ -348,7 +348,7 @@ namespace Punto.d.v
             double total = 0;
             for (int x = 0; x < listView1.Items.Count; x++)
             {
-                double precio = Convert.ToDouble(listView1.Items[x].SubItems[1].Text);
+                double precio = Convert.ToDouble(remove_unwanted(listView1.Items[x].SubItems[1].Text));
                 double unidades = Convert.ToDouble(listView1.Items[x].SubItems[2].Text);
                 total = (precio * unidades) + total;
             }
