@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.SidePanel = new System.Windows.Forms.Panel();
+            this.Caja = new System.Windows.Forms.Button();
             this.historial_menu = new System.Windows.Forms.Button();
             this.inventario_menu = new System.Windows.Forms.Button();
             this.vender_menu = new System.Windows.Forms.Button();
@@ -47,6 +48,7 @@
             // SidePanel
             // 
             this.SidePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.SidePanel.Controls.Add(this.Caja);
             this.SidePanel.Controls.Add(this.historial_menu);
             this.SidePanel.Controls.Add(this.inventario_menu);
             this.SidePanel.Controls.Add(this.vender_menu);
@@ -56,13 +58,28 @@
             this.SidePanel.Size = new System.Drawing.Size(137, 858);
             this.SidePanel.TabIndex = 13;
             // 
+            // Caja
+            // 
+            this.Caja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.Caja.FlatAppearance.BorderSize = 0;
+            this.Caja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Caja.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Caja.Location = new System.Drawing.Point(0, 99);
+            this.Caja.Name = "Caja";
+            this.Caja.Size = new System.Drawing.Size(137, 69);
+            this.Caja.TabIndex = 0;
+            this.Caja.TabStop = false;
+            this.Caja.Text = "CAJA";
+            this.Caja.UseVisualStyleBackColor = false;
+            this.Caja.Click += new System.EventHandler(this.Caja_Click);
+            // 
             // historial_menu
             // 
             this.historial_menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
             this.historial_menu.FlatAppearance.BorderSize = 0;
             this.historial_menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.historial_menu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.historial_menu.Location = new System.Drawing.Point(0, 164);
+            this.historial_menu.Location = new System.Drawing.Point(0, 249);
             this.historial_menu.Name = "historial_menu";
             this.historial_menu.Size = new System.Drawing.Size(137, 69);
             this.historial_menu.TabIndex = 0;
@@ -77,7 +94,7 @@
             this.inventario_menu.FlatAppearance.BorderSize = 0;
             this.inventario_menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.inventario_menu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.inventario_menu.Location = new System.Drawing.Point(0, 99);
+            this.inventario_menu.Location = new System.Drawing.Point(0, 174);
             this.inventario_menu.Name = "inventario_menu";
             this.inventario_menu.Size = new System.Drawing.Size(137, 69);
             this.inventario_menu.TabIndex = 0;
@@ -121,9 +138,10 @@
             this.menos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.menos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.menos.Location = new System.Drawing.Point(1031, 9);
             this.menos.Name = "menos";
-            this.menos.Size = new System.Drawing.Size(21, 32);
+            this.menos.Size = new System.Drawing.Size(21, 29);
             this.menos.TabIndex = 0;
             this.menos.Text = "_";
             this.menos.Click += new System.EventHandler(this.menos_Click);
@@ -134,6 +152,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cuadro.AutoSize = true;
+            this.cuadro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cuadro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cuadro.Location = new System.Drawing.Point(1058, 9);
             this.cuadro.Name = "cuadro";
             this.cuadro.Size = new System.Drawing.Size(18, 15);
@@ -147,6 +167,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Equis.AutoSize = true;
+            this.Equis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Equis.Location = new System.Drawing.Point(1086, 9);
             this.Equis.Name = "Equis";
             this.Equis.Size = new System.Drawing.Size(14, 15);
@@ -159,6 +180,7 @@
             this.panelchilds.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelchilds.BackColor = System.Drawing.Color.Azure;
             this.panelchilds.Location = new System.Drawing.Point(137, 0);
             this.panelchilds.Name = "panelchilds";
             this.panelchilds.Size = new System.Drawing.Size(1116, 817);
@@ -208,6 +230,7 @@
         private System.Windows.Forms.Panel panelchilds;
         public System.Windows.Forms.Timer timer1;
         public System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Button Caja;
     }
 }
 

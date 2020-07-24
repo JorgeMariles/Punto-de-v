@@ -142,13 +142,10 @@ namespace Punto.d.v
             }
         }
 
-
-
-
-
-
-
-
+        private void Caja_Click(object sender, EventArgs e)
+        {
+            openChildform(new Form6());
+        }
     }
     
 }

@@ -61,7 +61,6 @@ namespace Punto.d.v
                     for (int i = 0; i < csvTable.Rows.Count; i++)
                     {
                         ventas.Add(new VentaParameters { Nombre = csvTable.Rows[i][0].ToString(), Precio = csvTable.Rows[i][1].ToString(), Cantidades = csvTable.Rows[i][2].ToString(), Costo = csvTable.Rows[i][3].ToString() });
-
                     }
                 }
                 else
@@ -82,7 +81,7 @@ namespace Punto.d.v
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+             
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
@@ -113,8 +112,9 @@ namespace Punto.d.v
 
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
 
-
-
+        }
     }
 }

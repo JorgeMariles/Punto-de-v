@@ -247,9 +247,8 @@ namespace Punto.d.v
             }
             else
                 MessageBox.Show("el elemento no pudo ser creado");
-
-
         }
+
         private void lista()
         {
             List<SearchParameters> Inventario = getitems();
@@ -263,10 +262,26 @@ namespace Punto.d.v
                 item2.SubItems.Add(Inventario[i].Unidad_Kg);
                 listView1.Items.Add(item2);
             }
+            listView1.View = View.Details;
+            listView1.Sorting = SortOrder.Ascending;
         }
+        
+
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                string buscar = listView1.SelectedItems[0].SubItems[0].Text;
+                Nombre.Text = buscar;
+                List<SearchParameters> Inventario = getitems();
+                for (int i = 0; i < Inventario.Count; i++)
+                {
+                    if (buscar == Inventario[i].Nombre)
+                        write(i);
+                }
+                listView1.SelectedItems.Clear();
+            }
 
         }
 

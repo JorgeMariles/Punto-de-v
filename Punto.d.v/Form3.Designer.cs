@@ -56,7 +56,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.LimeGreen;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(359, 251);
+            this.button1.Location = new System.Drawing.Point(383, 165);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 53);
             this.button1.TabIndex = 5;
@@ -118,12 +118,14 @@
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.BackColor = System.Drawing.Color.LightPink;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Location = new System.Drawing.Point(383, 99);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 29);
+            this.button2.Size = new System.Drawing.Size(131, 29);
             this.button2.TabIndex = 3;
             this.button2.Text = "Agregar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // cantidades
@@ -143,7 +145,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(258, 78);
+            this.label1.Location = new System.Drawing.Point(270, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 15);
             this.label1.TabIndex = 5;
@@ -169,7 +171,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(482, 131);
+            this.label3.Location = new System.Drawing.Point(168, 213);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 25);
             this.label3.TabIndex = 7;
@@ -182,7 +184,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(383, 131);
+            this.label4.Location = new System.Drawing.Point(100, 213);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 25);
             this.label4.TabIndex = 8;
@@ -194,7 +196,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(161, 189);
+            this.label5.Location = new System.Drawing.Point(168, 159);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(34, 15);
             this.label5.TabIndex = 9;
@@ -206,7 +208,7 @@
             this.Pago.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Pago.Location = new System.Drawing.Point(209, 186);
+            this.Pago.Location = new System.Drawing.Point(226, 156);
             this.Pago.Name = "Pago";
             this.Pago.Size = new System.Drawing.Size(125, 23);
             this.Pago.TabIndex = 4;
@@ -220,7 +222,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(359, 182);
+            this.label6.Location = new System.Drawing.Point(75, 264);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(81, 25);
             this.label6.TabIndex = 8;
@@ -234,7 +236,7 @@
             this.cambiol.AutoSize = true;
             this.cambiol.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cambiol.ForeColor = System.Drawing.Color.Black;
-            this.cambiol.Location = new System.Drawing.Point(482, 182);
+            this.cambiol.Location = new System.Drawing.Point(168, 264);
             this.cambiol.Name = "cambiol";
             this.cambiol.Size = new System.Drawing.Size(32, 25);
             this.cambiol.TabIndex = 7;
@@ -284,7 +286,7 @@
             // 
             // Form3
             // 
-            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1116, 817);
             this.Controls.Add(this.Limpiar);
             this.Controls.Add(this.cambiarC);
