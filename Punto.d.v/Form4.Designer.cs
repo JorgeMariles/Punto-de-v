@@ -52,6 +52,8 @@
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.Costo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Inventario
@@ -300,12 +302,33 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Costo";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(12, 261);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(169, 21);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "ULTIMO DIA DE CORTE";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(43, 307);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(0, 21);
+            this.label7.TabIndex = 9;
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1116, 817);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.Costo);
             this.Controls.Add(this.listView1);
@@ -361,5 +384,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.TextBox Costo;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }

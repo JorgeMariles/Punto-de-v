@@ -33,11 +33,14 @@
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.Hora = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.totallab = new System.Windows.Forms.Label();
             this.gain = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // columnHeader1
@@ -64,14 +67,16 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.Hora,
+            this.columnHeader5});
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.LabelWrap = false;
-            this.listView1.Location = new System.Drawing.Point(481, 81);
+            this.listView1.Location = new System.Drawing.Point(337, 81);
             this.listView1.Name = "listView1";
             this.listView1.ShowGroups = false;
-            this.listView1.Size = new System.Drawing.Size(606, 720);
+            this.listView1.Size = new System.Drawing.Size(767, 720);
             this.listView1.TabIndex = 0;
             this.listView1.TabStop = false;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -83,9 +88,20 @@
             this.columnHeader4.Text = "Cantidades Vendidas";
             this.columnHeader4.Width = 100;
             // 
+            // Hora
+            // 
+            this.Hora.Name = "Hora";
+            this.Hora.Text = "Hora";
+            this.Hora.Width = 80;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Corte";
+            this.columnHeader5.Width = 80;
+            // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(107, 81);
+            this.monthCalendar1.Location = new System.Drawing.Point(47, 81);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 1;
             this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
@@ -94,7 +110,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(107, 262);
+            this.label1.Location = new System.Drawing.Point(0, 262);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(195, 45);
             this.label1.TabIndex = 2;
@@ -104,7 +120,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(72, 333);
+            this.label2.Location = new System.Drawing.Point(0, 333);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(230, 45);
             this.label2.TabIndex = 2;
@@ -114,7 +130,7 @@
             // 
             this.totallab.AutoSize = true;
             this.totallab.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.totallab.Location = new System.Drawing.Point(334, 262);
+            this.totallab.Location = new System.Drawing.Point(220, 262);
             this.totallab.Name = "totallab";
             this.totallab.Size = new System.Drawing.Size(0, 45);
             this.totallab.TabIndex = 2;
@@ -123,10 +139,21 @@
             // 
             this.gain.AutoSize = true;
             this.gain.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.gain.Location = new System.Drawing.Point(334, 333);
+            this.gain.Location = new System.Drawing.Point(230, 333);
             this.gain.Name = "gain";
             this.gain.Size = new System.Drawing.Size(0, 45);
             this.gain.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 57);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(734, 15);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "El corte es generado automanticamente al momento de entrar a este menu, se hace e" +
+    "l corte hasta la ultima venta hecha el dia en cuestion.";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // Form5
             // 
@@ -134,6 +161,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1116, 817);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.gain);
             this.Controls.Add(this.totallab);
             this.Controls.Add(this.label2);
@@ -160,5 +188,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label totallab;
         private System.Windows.Forms.Label gain;
+        private System.Windows.Forms.ColumnHeader Hora;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.Label label3;
     }
 }

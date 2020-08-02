@@ -20,6 +20,10 @@ namespace Punto.d.v
 {
     public partial class Form4 : Form
     {
+        string ruta_inv = @"C:\Punto_DV\Inventario\";
+        string ruta_ventas = @"C:\Punto_DV\Ventas\";
+        string inventario_csv = @"C:\Punto_DV\Inventario\Inventario.csv";
+        string last_corte = @"C:\Punto_DV\Inventario\LastCorte.txt";
         public Form4()
         {
             InitializeComponent();
@@ -27,6 +31,18 @@ namespace Punto.d.v
             this.ActiveControl = textBox1;
             textBox1.Focus();
             lista();
+            string daito = "";
+            using (StreamReader sr = File.OpenText(last_corte))
+            {
+                string s = "";
+
+                while ((s = sr.ReadLine()) != null)
+                {
+                    daito = s;
+                }
+            }
+            DateTime final=Convert.ToDateTime(daito).AddDays(1);     
+            label7.Text = final.ToString("dd,MM,yyyy");
         }
 
         private void Inventario_Click(object sender, EventArgs e)
@@ -48,7 +64,7 @@ namespace Punto.d.v
         {
 
             var csvTable = new DataTable();
-            using (var csvReader = new LumenWorks.Framework.IO.Csv.CsvReader(new StreamReader(System.IO.File.OpenRead(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv")), false))
+            using (var csvReader = new LumenWorks.Framework.IO.Csv.CsvReader(new StreamReader(System.IO.File.OpenRead(inventario_csv)), false))
             {
                 csvTable.Load(csvReader);
             }
@@ -131,11 +147,13 @@ namespace Punto.d.v
             List<SearchParameters> Inventario = getitems();
             List<SearchParameters> InventarioNew = new List<SearchParameters>();
             int Cant = 0;
+            double products = 0;
             for (int i = 0; i < Inventario.Count; i++)
             {
-                if (Inventario[i].Nombre == textBox1.Text)
+                if (Inventario[i].Nombre == Nombre.Text)
                 {
-                    InventarioNew.Add(new SearchParameters { Nombre = Nombre.Text, Precio = remove_unwanted(Precio.Text), Unidad_Kg = Kg_unidades.Text, Inventario = remove_unwanted(Unidades.Text),Costo= remove_unwanted(Costo.Text) });
+                    products = Convert.ToDouble(Inventario[i].Inventario) + Convert.ToDouble(remove_unwanted(Unidades.Text));
+                    InventarioNew.Add(new SearchParameters { Nombre = Nombre.Text, Precio = remove_unwanted(Precio.Text), Unidad_Kg = Kg_unidades.Text, Inventario = products.ToString(),Costo= remove_unwanted(Costo.Text) });
                 }
                 else
                 {
@@ -155,7 +173,7 @@ namespace Punto.d.v
             }
             InventarioNew.RemoveAt(0);
 
-            using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv"))
+            using (var writer = new StreamWriter(inventario_csv))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
                 csv.WriteRecords(InventarioNew);
@@ -183,7 +201,7 @@ namespace Punto.d.v
             foreach (var c in s)
             {
                 int ascii = (int)c;
-                if ((ascii >= 48 && ascii <= 57) || ascii == 44 || ascii == 46)
+                if ((ascii >= 48 && ascii <= 57) || ascii == 44 || ascii == 46|| ascii==45)
                     result += c;
             }
             return result;
@@ -213,7 +231,7 @@ namespace Punto.d.v
                 }
             }
             InventarioNew.RemoveAt(0);
-            using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv"))
+            using (var writer = new StreamWriter(inventario_csv))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
                 csv.WriteRecords(InventarioNew);
@@ -237,7 +255,7 @@ namespace Punto.d.v
                 }
                 InventarioNew.Add(new SearchParameters { Nombre = Nombre.Text, Precio = remove_unwanted(Precio.Text), Unidad_Kg = Kg_unidades.Text, Inventario = remove_unwanted(Unidades.Text),Costo=remove_unwanted(Costo.Text) });
                 InventarioNew.RemoveAt(0);
-                using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv"))
+                using (var writer = new StreamWriter(inventario_csv))
                 using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
                 {
                     csv.WriteRecords(InventarioNew);

@@ -23,6 +23,7 @@ namespace Punto.d.v
     {
         public Form3()
         {
+            create_carpetas();
             InitializeComponent();
             autocomplete();
             this.ActiveControl = textBox1;
@@ -32,6 +33,7 @@ namespace Punto.d.v
             Pago.Text = "0";
             cambiol.Text = "0" + "$";
             getventas(fecha());
+            
         }
         static string fecha()
         {
@@ -43,9 +45,8 @@ namespace Punto.d.v
         //lista get lista
         public List<SearchParameters> getitems()
         {
-
             var csvTable = new DataTable();
-            using (var csvReader = new LumenWorks.Framework.IO.Csv.CsvReader(new StreamReader(System.IO.File.OpenRead(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv")), false))
+            using (var csvReader = new LumenWorks.Framework.IO.Csv.CsvReader(new StreamReader(System.IO.File.OpenRead(inventario_csv)), false))
             {
                 csvTable.Load(csvReader);
             }
@@ -74,28 +75,33 @@ namespace Punto.d.v
             public string Precio { get; set; }
             public string Cantidades { get; set; }
             public string Costo { get; set; }
-            
+            public string hora { get; set; }
+
+            public string corte { get; set; }
+
         }
+        
       
         public List<VentaParameters> getventas(string fecha)
         {
+
             //search if day exist
-            string[] FilesVenta = Directory.GetFiles(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Ventas");
+            string[] FilesVenta = Directory.GetFiles(ruta_ventas);
             List<VentaParameters> ventas = new List<VentaParameters>();
             int count = 0;
             foreach(string Filename in FilesVenta)
             {
-                if (Filename == @"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Ventas\" + fecha + ".csv")
+                if (Filename == ruta_ventas + fecha + ".csv")
                 {
                     var csvTable = new DataTable();
-                    using (var csvReader = new LumenWorks.Framework.IO.Csv.CsvReader(new StreamReader(System.IO.File.OpenRead(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Ventas\" + fecha + ".csv")), false))
+                    using (var csvReader = new LumenWorks.Framework.IO.Csv.CsvReader(new StreamReader(System.IO.File.OpenRead(ruta_ventas + fecha + ".csv")), false))
                     {
                         csvTable.Load(csvReader);
                     }
                     
                     for (int i = 0; i < csvTable.Rows.Count; i++)
                     {
-                        ventas.Add(new VentaParameters { Nombre = csvTable.Rows[i][0].ToString(), Precio = csvTable.Rows[i][1].ToString(), Cantidades = csvTable.Rows[i][2].ToString(), Costo = csvTable.Rows[i][3].ToString() });
+                        ventas.Add(new VentaParameters { Nombre = csvTable.Rows[i][0].ToString(), Precio = csvTable.Rows[i][1].ToString(), Cantidades = csvTable.Rows[i][2].ToString(), Costo = csvTable.Rows[i][3].ToString(),hora= csvTable.Rows[i][4].ToString(), corte = csvTable.Rows[i][5].ToString() });
 
                     }
                 }
@@ -106,7 +112,7 @@ namespace Punto.d.v
             if (count == FilesVenta.Length)
             {
                 List<VentaParameters> ventasinicial = new List<VentaParameters>();
-                using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Ventas\" + fecha+ ".csv"))
+                using (var writer = new StreamWriter(ruta_ventas + fecha+ ".csv"))
                 using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
                 {
                     csv.WriteRecords(ventasinicial);
@@ -135,7 +141,7 @@ namespace Punto.d.v
                 List<VentaParameters> ventas = getventas(fecha());
                 for (int x = 0; x < listView1.Items.Count; x++)
                 {
-                    
+
                     List<SearchParameters> Inventario = getitems();
                     List<SearchParameters> InventarioNew = new List<SearchParameters>();
                     for (int i = 0; i < Inventario.Count; i++)
@@ -143,34 +149,21 @@ namespace Punto.d.v
                         if (Inventario[i].Nombre == listView1.Items[x].SubItems[0].Text)
                         {
                             double num = Convert.ToDouble(Inventario[i].Inventario) - Convert.ToDouble(listView1.Items[x].SubItems[2].Text);
-                            InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = num.ToString(), Costo = Inventario[i].Costo });
-                            ventas.Add(new VentaParameters { Nombre = Inventario[i].Nombre,Precio= Inventario[i].Precio,Cantidades= listView1.Items[x].SubItems[2].Text,Costo= Inventario[i].Costo });
-                        }
-                        else
-                        {
-                            InventarioNew.Add(new SearchParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Unidad_Kg = Inventario[i].Unidad_Kg, Inventario = Inventario[i].Inventario, Costo = Inventario[i].Costo });
+                            ventas.Add(new VentaParameters { Nombre = Inventario[i].Nombre, Precio = Inventario[i].Precio, Cantidades = listView1.Items[x].SubItems[2].Text, Costo = Inventario[i].Costo,hora= DateTime.Now.ToString("h:mm:ss tt"),corte="false" });
                         }
                     }
 
-                    InventarioNew.RemoveAt(0);
 
-                    using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Inventario\Inventario.csv"))
+                    ventas.RemoveAt(0);
+                    using (var writer = new StreamWriter(ruta_ventas + fecha() + ".csv"))
                     using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
                     {
-                        csv.WriteRecords(InventarioNew);
+                        csv.WriteRecords(ventas);
                     }
 
+                    MessageBox.Show("Venta Exitosa");
+                    Limpiaservice();
                 }
-                ventas.RemoveAt(0);
-                using (var writer = new StreamWriter(@"C:\Users\monit\Documents\GitHub\Punto-de-v\Punto.d.v\Ventas\" + fecha() + ".csv"))
-                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
-                {
-                    csv.WriteRecords(ventas);
-                }
-
-                MessageBox.Show("Venta Exitosa");
-                Limpiaservice();
-
 
             }
             else if (listView1.Items.Count == 0)
@@ -398,6 +391,50 @@ namespace Punto.d.v
         {
 
         }
+        string ruta_dir = @"C:\";
+        string ruta_inv = @"C:\Punto_DV\Inventario\";
+        string ruta_ventas = @"C:\Punto_DV\Ventas\";
+        string inventario_csv = @"C:\Punto_DV\Inventario\Inventario.csv";
+        string last_corte= @"C:\Punto_DV\Inventario\LastCorte.txt";
+
+
+        private void create_carpetas()
+        {
+            if (!Directory.Exists(ruta_dir + "Punto_DV"))
+            {
+                DirectoryInfo di = Directory.CreateDirectory(ruta_dir + "Punto_DV");
+            }
+
+            if (!Directory.Exists(ruta_inv))
+            {
+                DirectoryInfo di = Directory.CreateDirectory(ruta_inv);
+                List<SearchParameters> Inventarioinicial = new List<SearchParameters>();
+                using (var writer = new StreamWriter(inventario_csv))
+                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                {
+                    csv.WriteRecords(Inventarioinicial);
+                }
+            }
+
+            if (!Directory.Exists(ruta_ventas))
+            {
+                DirectoryInfo di = Directory.CreateDirectory(ruta_ventas);
+            }
+
+           if (!File.Exists(last_corte))
+            {
+                DateTime yest = DateTime.Today.AddDays(-1);
+
+                using (StreamWriter sw = File.CreateText(last_corte))
+                {
+
+                    sw.WriteLine(yest.ToString("dd,MM,yyyy"));
+                }
+            }
+            
+
+        }
+
     }
     
 }

@@ -26,6 +26,7 @@ namespace Punto.d.v
 
             InitializeComponent();
             openChildform(new Form3());
+            
            
 
         }
